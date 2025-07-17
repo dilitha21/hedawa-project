@@ -4,7 +4,7 @@ function Register() {
   return (
     <div style={{ padding: '2rem' }}>
       <h2>Register Page</h2>
-      <p>Form coming soon...</p>
+      {/* You can build a register form here later */}
     </div>
   );
 }
