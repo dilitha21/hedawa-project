@@ -33,12 +33,12 @@ export const getRooms = () => {
 };
 
 // Bookings API
-export const createBooking = (user_id, room_id, start_date, end_date) => {
-  return api.post('/api/bookings', { user_id, room_id, start_date, end_date });
+export const createBooking = (room_id, start_date, end_date) => {
+  return api.post('/api/bookings', { room_id, start_date, end_date });
 };
 
-export const getUserBookings = (user_id) => {
-  return api.get(`/api/bookings?user_id=${user_id}`);
+export const getUserBookings = () => {
+  return api.get('/api/bookings');
 };
 
 export const deleteBooking = (id) => {
@@ -46,12 +46,12 @@ export const deleteBooking = (id) => {
 };
 
 // Orders API
-export const createOrder = (user_id, item, quantity, address) => {
-  return api.post('/api/orders', { user_id, item, quantity, address });
+export const createOrder = (item, quantity, address) => {
+  return api.post('/api/orders', { item, quantity, address });
 };
 
-export const getUserOrders = (user_id) => {
-  return api.get(`/api/orders?user_id=${user_id}`);
+export const getUserOrders = () => {
+  return api.get('/api/orders');
 };
 
 export const deleteOrder = (id) => {

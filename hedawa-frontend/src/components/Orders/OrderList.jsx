@@ -1,22 +1,23 @@
 // hedawa-frontend/src/components/Orders/OrderList.jsx
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { api } from '../../services/api';
+import { getUserOrders, deleteOrder } from '../../services/api';
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const { user } = useAuth();
+  // const { user } = useAuth(); // Not needed for fetching orders
 
   useEffect(() => {
     fetchOrders();
+    // eslint-disable-next-line
   }, []);
 
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await api.get(`/orders?user_id=${user.id}`);
+      const response = await getUserOrders();
       setOrders(response.data);
     } catch (err) {
       setError('Failed to fetch orders');
@@ -29,7 +30,7 @@ const OrderList = () => {
   const handleDeleteOrder = async (orderId) => {
     if (window.confirm('Are you sure you want to delete this order?')) {
       try {
-        await api.delete(`/orders/${orderId}`);
+        await deleteOrder(orderId);
         setOrders(orders.filter(order => order.id !== orderId));
       } catch (err) {
         setError('Failed to delete order');
